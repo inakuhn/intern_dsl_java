@@ -5,5 +5,5 @@ package de.htwg.mdd.intern.home.dsl;
  */
 public interface HomeMap<T> {
 
-    End<T> numberOfStreets(int horizontalNumberOfStreets, int verticalNumberOfStreets);
+    FavoriteHome<T> numberOfStreets(int horizontalNumberOfStreets, int verticalNumberOfStreets);
 }

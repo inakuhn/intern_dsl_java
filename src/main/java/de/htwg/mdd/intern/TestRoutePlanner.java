@@ -15,7 +15,7 @@ import static de.htwg.mdd.intern.home.map.HomeMapBuilder.start;
 public class TestRoutePlanner {
     private TestRoutePlanner(){}
     public static void main(String[] args) {
-        TownMap townMap =  start().startMap("Ina's Neighbourhood").numberOfStreets(5,1).finishMap();
+        TownMap townMap =  start().startMap("Ina's Neighbourhood").numberOfStreets(4,4).numberOfSFavoriteHome(3,3).finishMap();
 
         VelocityEngine ve = new VelocityEngine();
         ve.init();
@@ -27,7 +27,7 @@ public class TestRoutePlanner {
         String wi =  writer.toString();
         System.out.println(wi);
         try {
-            PrintStream out = new PrintStream(new FileOutputStream("filename.html"));
+            PrintStream out = new PrintStream(new FileOutputStream("neighbourhood.html"));
             out.print(wi);
 
         } catch (FileNotFoundException e) {

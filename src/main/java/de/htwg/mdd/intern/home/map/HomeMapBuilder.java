@@ -3,6 +3,7 @@ package de.htwg.mdd.intern.home.map;
 
 import de.htwg.mdd.intern.directions.route.Directions;
 import de.htwg.mdd.intern.home.dsl.End;
+import de.htwg.mdd.intern.home.dsl.FavoriteHome;
 import de.htwg.mdd.intern.home.dsl.HomeMap;
 import de.htwg.mdd.intern.home.dsl.Start;
 
@@ -16,8 +17,6 @@ import java.util.List;
 public class HomeMapBuilder {
     private TownMap townMap;
 
-
-    List<Directions> directions = new LinkedList<Directions>();
     public static HomeMapBuilder.StartScope start() {
         return new HomeMapBuilder().new StartScope();
     }
@@ -30,27 +29,33 @@ public class HomeMapBuilder {
     }
     public final class DrivenScope implements HomeMap<TownMap> {
 
-        public End<TownMap> numberOfStreets(int horizontalNumberOfStreets , int verticalNumberOfStreets) {
+        public FavoriteHome<TownMap> numberOfStreets(int horizontalNumberOfStreets , int verticalNumberOfStreets) {
             if(horizontalNumberOfStreets < 1|| verticalNumberOfStreets < 1 ){
                 throw new RuntimeException("Street number muss be a positive number");
             }
 
             HomeMapBuilder.this.townMap =  TownMap.builder().name(townMap.getName())
-                                            .startHorizontal(1)
-                                            .startVertical(1)
                                             .horizontalStreetNumbers(horizontalNumberOfStreets)
-                                            .verticalStreetNumbers(verticalNumberOfStreets).homes(generateHomes(verticalNumberOfStreets,horizontalNumberOfStreets)).build();
-            return HomeMapBuilder.this.new EndScope();
+                                            .verticalStreetNumbers(verticalNumberOfStreets).build();
+            return HomeMapBuilder.this.new FavoriteHomeScope();
+        }
+    }
+    public final class FavoriteHomeScope implements FavoriteHome<TownMap> {
+
+        @Override
+        public End<TownMap> numberOfSFavoriteHome(int horizontalStreet, int verticalStreet) {
+            if(!isInRange(horizontalStreet, verticalStreet)){
+                throw new RuntimeException("Favorite street muss be in map!!");
+            }
+            townMap.setFavoriteHomeHorizontal(horizontalStreet);
+            townMap.setFavoriteHomeVertical(verticalStreet);
+            return HomeMapBuilder.this.new EndScope() ;
         }
 
-        private List<Home> generateHomes(int verticalNumberOfStreets, int horizontalNumberOfStreets) {
-            List<Home> result =  new LinkedList<Home>();
-            for(int horizontal = 1 ; horizontal <= horizontalNumberOfStreets; horizontal ++){
-                for(int vertical = 1; vertical <= verticalNumberOfStreets; vertical ++){
-                    result.add(Home.builder().hasBottom(false).hasRight(false).horizontal(horizontal).vertical(vertical).build());
-                }
-            }
-            return result;
+        private boolean isInRange(int horizontalStreet, int verticalStreet) {
+            return horizontalStreet >= 1 && verticalStreet >= 1
+                    && horizontalStreet <= townMap.getHorizontalStreetNumbers()
+                    && verticalStreet <= townMap.getVerticalStreetNumbers();
         }
     }
 
