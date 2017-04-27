@@ -1,0 +1,63 @@
+<html>
+<head>
+    <title>Neighbourhood - Ina's Neighbourhood</title>
+</head>
+<body>
+    <h1>Ina's Neighbourhood</h1>
+    
+    
+    <table >
+        <tr>
+                                                                                    <td style="border-bottom: 10px solid #5041f4">
+                    <img src="start_home_with_street.png"/>
+                    </td>
+                                                                                                                                                                                                                                                                                                        <td>
+                                    <img src="home_with_street.png"/>
+                            </td>
+
+
+                                                                                                                                                                                                                                                                                                                                <td>
+                                    <img src="home_with_street.png"/>
+                            </td>
+
+
+                                                                                                                                                                                                                                                                                                                                <td>
+                                    <img src="home_with_street.png"/>
+                            </td>
+
+
+                                                                                                                                                                                                                                                                                                                                <td>
+                                    <img src="home_with_street.png"/>
+                            </td>
+
+
+                                                                                    </tr>
+        </table>
+</body>
+<html>
+<script>
+    document.addEventListener('keydown', function(event) {
+        if (event.keyCode == 37) {
+            console.log('Left was pressed');
+                                       alert("You ran out of the Street")
+            
+        }
+        else if (event.keyCode == 39) {
+            console.log('Right was pressed');
+            console.log(1)
+            
+                            window.location.reload();
+                        window.location.reload();
+        }
+        else if (event.keyCode == 38) {
+            console.log('Up was pressed');
+                                        alert("You ran out of the Street")
+                        window.location.reload();
+        }
+        else if (event.keyCode == 40) {
+            console.log('Down was pressed');
+                                        alert("You ran out of the Street")
+                        window.location.reload();
+        }
+    }, true)
+</script>

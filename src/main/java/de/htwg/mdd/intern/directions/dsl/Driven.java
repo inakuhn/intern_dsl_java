@@ -1,4 +1,4 @@
-package de.htwg.mdd.intern.dsl;
+package de.htwg.mdd.intern.directions.dsl;
 
 /**
  * Created by Ina Kuhn on 07.04.2017.

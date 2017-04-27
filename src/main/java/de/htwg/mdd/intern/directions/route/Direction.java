@@ -1,4 +1,6 @@
-package de.htwg.mdd.intern.route;
+package de.htwg.mdd.intern.directions.route;
+
+import de.htwg.mdd.intern.route.Route;
 
 import java.util.List;
 
@@ -6,7 +8,6 @@ import java.util.List;
  * Created by Ina Kuhn on 07.04.2017.
  */
 public class Direction implements Route {
-    private int tabs = 2;
     private List<Directions> directions;
 
     public Direction(List<Directions> directions) {
@@ -15,11 +16,10 @@ public class Direction implements Route {
     }
 
     public void getDirections() {
-        int tab = tabs;
         for (Directions direction : directions)
             switch (direction) {
-                case STRAIGHT:
-                    System.out.print("\t\tSTRAIGHT\n\t\t\t|\n\t\t\t|\n\t\t\tv\n\t\t\t|\n");
+                case UP:
+                    System.out.print("\t\tUP\n\t\t\t|\n\t\t\t|\n\t\t\tv\n\t\t\t|\n");
                 case LEFT:
                     System.out.print("\t\t\t->->LEFT->->-\n");
                 case RIGHT:
